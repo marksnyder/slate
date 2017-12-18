@@ -62,26 +62,25 @@ service.RegisterEvent(e);
 
 ## Filtering Events
 
-### By Time (Before)
+> By Time (Before)
 
 ```csharp
 service.FilterEvents(new string[] { "On.Before=2001/01/01 01:02" });
 ```
 
-### By Time (After)
+> By Time (After)
 
 ```csharp
 service.FilterEvents(new string[] { "On.After=2001/01/01 01:02" });
 ```
 
-### By Time (Between)
+> By Time (Between)
 
 ```csharp
 service.FilterEvents(new string[] { "On.Between=2001/01/01 01:00,2001/01/01 01:02" });
 ```
 
-
-### By Entity State
+> By Entity State
 
 ```csharp
 service.FilterEvents(new string[] { "State.MyVal=Hello World" });
