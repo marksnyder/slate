@@ -21,6 +21,8 @@ This method of storage and retrieval will help data consumers solve analytical p
 
 # Initializing
 
+
+
 > At this time an in memory provider is available. Future development will include persistent storage providers.
 
 ```csharp
@@ -32,6 +34,8 @@ var service = new Chronicity.Provider.InMemory.TimeLineService();
 Entities represent tracked state over time.
 
 ## Register Entity Type
+
+Registering an entity adds it to the timeline and describes its type. Typing can be used later for filtering and also provides a namespace for the entity identifier.
 
 ```csharp
  service.RegisterEntity("MyEntityID", "MyEntityType");
@@ -54,4 +58,31 @@ var e = new Event()
 
 service.RegisterEvent(e);
 
+```
+
+## Filtering Events
+
+### By Time (Before)
+
+```csharp
+service.FilterEvents(new string[] { "On.Before=2001/01/01 01:02" });
+```
+
+### By Time (After)
+
+```csharp
+service.FilterEvents(new string[] { "On.After=2001/01/01 01:02" });
+```
+
+### By Time (Between)
+
+```csharp
+service.FilterEvents(new string[] { "On.Between=2001/01/01 01:00,2001/01/01 01:02" });
+```
+
+
+### By Entity State
+
+```csharp
+service.FilterEvents(new string[] { "State.MyVal=Hello World" });
 ```
