@@ -62,6 +62,12 @@ service.RegisterEvent(e);
 
 ## Filtering Events
 
+Registered events can be searched using expression filters. Filters will return a results that contains:
+
+Property | Description
+State | The state of the entity at the time the event was registered
+Event | The matching registered event
+
 > By Time (Before)
 
 ```csharp
