@@ -1,15 +1,11 @@
 ---
-title: API Reference
+title: Chronicity.IO
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+  - csharp
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - <a href='https://github.com/marksnyder/Chronicity'>Source Code</a>
 
 includes:
   - errors
@@ -19,11 +15,9 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Chronicity seeks to provide a data store that is time and state centric. As opposed to traditional relational database systems which focus on data integrity, Chronicity focuses on maintaining the state of a data model (and it's relationship to other models) over time.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+This method of storage and retrieval will help data consumers solve analytical problems with less effort when time and context are key components.
 
 # Authentication
 
@@ -236,4 +230,3 @@ This endpoint deletes a specific kitten.
 Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to delete
-
