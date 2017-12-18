@@ -1,0 +1,1 @@
+cp  -R  /var/lib/go-agent/pipelines/WebDocs/build/*  /var/www/chronicity.io/
