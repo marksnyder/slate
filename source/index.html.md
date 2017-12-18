@@ -19,47 +19,22 @@ Chronicity seeks to provide a data store that is time and state centric. As oppo
 
 This method of storage and retrieval will help data consumers solve analytical problems with less effort when time and context are key components.
 
-# Authentication
+# Initializing
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
+```chsarp
+var service = new Chronicity.Provider.InMemory.TimeLineService();
+```
+At this time an in memory provider is available. Future development will include persistent storage providers.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+# Entities
+
+
+```chsarp
+ service.RegisterEntity("MyEntityID", "MyEntityType");
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
 
 ## Get All Kittens
 
