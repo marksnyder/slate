@@ -23,7 +23,7 @@ This method of storage and retrieval will help data consumers solve analytical p
 
 > To authorize, use this code:
 
-```chsarp
+```csharp
 var service = new Chronicity.Provider.InMemory.TimeLineService();
 ```
 At this time an in memory provider is available. Future development will include persistent storage providers.
@@ -31,7 +31,7 @@ At this time an in memory provider is available. Future development will include
 # Entities
 
 
-```chsarp
+```csharp
  service.RegisterEntity("MyEntityID", "MyEntityType");
 ```
 
