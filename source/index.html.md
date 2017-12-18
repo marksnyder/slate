@@ -21,6 +21,7 @@ This method of storage and retrieval will help data consumers solve analytical p
 
 # Initializing
 
+In order to use the timeline service you must create an instance of ITimeLineService.
 
 
 > At this time an in memory provider is available. Future development will include persistent storage providers.
@@ -43,7 +44,7 @@ Registering an entity adds it to the timeline and describes its type. Typing can
 
 # Events
 
-Events can modify state and relationships of entities.
+Events can modify the state and relationships of registered entities.
 
 ## Register Events
 
@@ -64,7 +65,8 @@ service.RegisterEvent(e);
 
 Registered events can be searched using expression filters. Filters will return a results that contains:
 
-Property | Description
+Property  | Description
+--------- | ---------
 State | The state of the entity at the time the event was registered
 Event | The matching registered event
 
