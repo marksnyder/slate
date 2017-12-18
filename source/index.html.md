@@ -8,7 +8,7 @@ toc_footers:
   - <a href='https://github.com/marksnyder/Chronicity'>Source Code</a>
 
 includes:
-  - errors
+
 
 search: true
 ---
