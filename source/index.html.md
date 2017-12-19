@@ -63,12 +63,6 @@ service.RegisterEvent(e);
 
 ## Filtering Events
 
-Registered events can be searched using expression filters. Filters will return a results that contains:
-
-Property  | Description
---------- | ---------
-State | The state of the entity at the time the event was registered
-Event | The matching registered event
 
 > By Time (Before)
 
@@ -93,3 +87,11 @@ service.FilterEvents(new string[] { "On.Between=2001/01/01 01:00,2001/01/01 01:0
 ```csharp
 service.FilterEvents(new string[] { "State.MyVal=Hello World" });
 ```
+
+
+Registered events can be searched using expression filters. Filters will return a results that contains:
+
+Property  | Description
+--------- | ---------
+State | The state of the entity at the time the event was registered
+Event | The matching registered event
