@@ -23,10 +23,13 @@ This method of storage and retrieval will help data consumers solve analytical p
 Links:
 
 Source Code:
+
 <a href='https://github.com/marksnyder/Chronicity'>Github</a>
 
 Nuget Packages:
-<a href='https://www.nuget.org/packages/Chronicity.Core/'>Chronicity Core</a>  |  
+
+<a href='https://www.nuget.org/packages/Chronicity.Core/'>Chronicity Core</a>  
+
 <a href='https://www.nuget.org/packages/Chronicity.Provider.InMemory/'>Chronicity.Provider.InMemory</a>
 
 # Initializing
@@ -46,7 +49,7 @@ Entities represent tracked state over time.
 
 ## Register Entity Type
 
-Registering an entity adds it to the timeline and describes its type. Typing can be used later for filtering and also provides a namespace for the entity identifier.
+Registering an entity adds it to the timeline and describes its type. Typing can be used later for filtering and grouping.
 
 ```csharp
  service.RegisterEntity("MyEntityID", "MyEntityType");
@@ -70,6 +73,18 @@ var e = new Event()
 service.RegisterEvent(e);
 
 ```
+
+## Retrieving Event state
+
+```csharp
+
+service.GetEntityState("MyEntityID","2001/01/01 01:01");
+
+```
+
+Returns a dictionary representing state at the time specified.
+
+
 
 ## Filtering Events
 
