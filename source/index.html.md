@@ -23,11 +23,11 @@ This method of storage and retrieval will help data consumers solve analytical p
 Links:
 
 Source Code:
-<a href='https://github.com/marksnyder/Chronicity'>Github</a>
+* <a href='https://github.com/marksnyder/Chronicity'>Github</a>
 
 Nuget Packages:
-<a href='https://www.nuget.org/packages/Chronicity.Core/'>Chronicity Core</a>
-<a href='https://www.nuget.org/packages/Chronicity.Provider.InMemory/'>Chronicity.Provider.InMemory</a>
+* <a href='https://www.nuget.org/packages/Chronicity.Core/'>Chronicity Core</a>
+* <a href='https://www.nuget.org/packages/Chronicity.Provider.InMemory/'>Chronicity.Provider.InMemory</a>
 
 # Initializing
 
