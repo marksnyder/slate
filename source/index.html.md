@@ -55,6 +55,17 @@ Registering an entity adds it to the timeline and describes its type. Typing can
  service.RegisterEntity("MyEntityID", "MyEntityType");
 ```
 
+## Retrieving Event state
+
+```csharp
+
+service.GetEntityState("MyEntityID","2001/01/01 01:01");
+
+```
+
+Returns a dictionary representing state at the time specified.
+
+
 # Events
 
 Events can modify the state and relationships of registered entities.
@@ -73,17 +84,6 @@ var e = new Event()
 service.RegisterEvent(e);
 
 ```
-
-## Retrieving Event state
-
-```csharp
-
-service.GetEntityState("MyEntityID","2001/01/01 01:01");
-
-```
-
-Returns a dictionary representing state at the time specified.
-
 
 
 ## Filtering Events
