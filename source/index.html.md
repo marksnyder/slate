@@ -6,6 +6,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 toc_footers:
   - <a href='https://github.com/marksnyder/Chronicity'>Source Code</a>
+  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
 
@@ -18,6 +19,15 @@ search: true
 Chronicity seeks to provide a data store that is time and state centric. As opposed to traditional relational database systems which focus on data integrity, Chronicity focuses on maintaining the state of a data model (and it's relationship to other models) over time.
 
 This method of storage and retrieval will help data consumers solve analytical problems with less effort when time and context are key components.
+
+Links:
+
+Source Code:
+<a href='https://github.com/marksnyder/Chronicity'>Github</a>
+
+Nuget Packages:
+<a href='https://www.nuget.org/packages/Chronicity.Core/'>Chronicity Core</a>
+<a href='https://www.nuget.org/packages/Chronicity.Provider.InMemory/'>Chronicity.Provider.InMemory</a>
 
 # Initializing
 
