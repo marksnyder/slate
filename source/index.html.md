@@ -64,7 +64,7 @@ var e = new Event()
      On = "2001/01/01 01:01",
      Type = "MyEventType",
      Entity = "MyEntityID",
-     Observations = new string[] { "State.MyVal=Hello World" }
+     Observations = new string[] { "Entity.State.MyVal=Hello World" }
  };
 
 service.RegisterEvent(e);
@@ -73,6 +73,11 @@ service.RegisterEvent(e);
 
 ## Filtering Events
 
+> By Type
+
+```csharp
+service.FilterEvents(new string[] { "Type=MyEventType" });
+```
 
 > By Time (Before)
 
@@ -95,9 +100,14 @@ service.FilterEvents(new string[] { "On.Between=2001/01/01 01:00,2001/01/01 01:0
 > By Entity State
 
 ```csharp
-service.FilterEvents(new string[] { "State.MyVal=Hello World" });
+service.FilterEvents(new string[] { "Entity.State.MyVal=Hello World" });
 ```
 
+> By Entity Type
+
+```csharp
+service.FilterEvents(new string[] { "Entity.Type=MyEntityType" });
+```
 
 Registered events can be searched using expression filters. Filters will return a results that contains:
 
