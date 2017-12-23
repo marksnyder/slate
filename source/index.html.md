@@ -55,7 +55,7 @@ Registering an entity adds it to the timeline and describes its type. Typing can
  service.RegisterEntity("MyEntityID", "MyEntityType");
 ```
 
-## Retrieving Event state
+## Retrieving Entity state
 
 ```csharp
 
@@ -77,6 +77,20 @@ var e = new Event()
  {
      On = "2001/01/01 01:01",
      Type = "MyEventType",
+     Entity = "MyEntityID"
+ };
+
+service.RegisterEvent(e);
+
+```
+
+## Setting Entity State
+
+```csharp
+var e = new Event()
+ {
+     On = "2001/01/01 01:01",
+     Type = "MyEventType",
      Entity = "MyEntityID",
      Observations = new string[] { "Entity.State.MyVal=Hello World" }
  };
@@ -85,6 +99,20 @@ service.RegisterEvent(e);
 
 ```
 
+## Linking Entities
+
+```csharp
+var e = new Event()
+ {
+     On = "2001/01/01 01:01",
+     Type = "MyEventType",
+     Entity = "MyEntityID",
+     Observations = new string[] { "Entity.Links.Add=AnotherEntityId" }
+ };
+
+service.RegisterEvent(e);
+
+```
 
 ## Filtering Events
 
@@ -130,3 +158,5 @@ Property  | Description
 --------- | ---------
 State | The state of the entity at the time the event was registered
 Event | The matching registered event
+Links | Entities linked after event was registered
+LinkedState | State of linked entities after event was registered
