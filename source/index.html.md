@@ -43,34 +43,13 @@ In order to use the timeline service you must create an instance of ITimeLineSer
 var service = new Chronicity.Provider.InMemory.TimeLineService();
 ```
 
-# Entities
-
-Entities represent tracked state over time.
-
-## Register Entity Type
-
-Registering an entity adds it to the timeline and describes its type. Typing can be used later for filtering and grouping.
-
-```csharp
- service.RegisterEntity("MyEntityID", "MyEntityType");
-```
-
-## Retrieving Entity state
-
-```csharp
-
-service.GetEntityState("MyEntityID","2001/01/01 01:01");
-
-```
-
-Returns a dictionary representing state at the time specified.
 
 
 # Events
 
 Events can modify the state and relationships of registered entities.
 
-## Register Events
+## Register New Event
 
 ```csharp
 var e = new Event()
@@ -156,7 +135,23 @@ Registered events can be searched using expression filters. Filters will return 
 
 Property  | Description
 --------- | ---------
-State | The state of the entity at the time the event was registered
+State | The state of the entity after event was registered
 Event | The matching registered event
 Links | Entities linked after event was registered
 LinkedState | State of linked entities after event was registered
+
+
+# Entities
+
+Entities represent tracked state over time.
+
+
+## Retrieving Entity state
+
+```csharp
+
+service.GetEntityState("MyEntityID","2001/01/01 01:01");
+
+```
+
+Returns a dictionary representing state at the time specified.
