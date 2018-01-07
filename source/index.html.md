@@ -16,21 +16,26 @@ search: true
 
 # Introduction
 
-Chronicity seeks to provide a data store that is time and state centric. As opposed to traditional relational database systems which focus on data integrity, Chronicity focuses on maintaining the state of a data model (and it's relationship to other models) over time.
+A powerful library written in .NET Core for searching and linking event/time driven datasets. Provides a rolling state mechanism and intelligent state linking.
 
-This method of storage and retrieval will help data consumers solve analytical problems with less effort when time and context are key components.
 
-Links:
+## Source Code:
 
-Source Code:
+<a class="github-button" href="https://github.com/marksnyder/Chronicity/subscription" data-icon="octicon-eye" data-size="large" data-show-count="true" aria-label="Watch marksnyder/Chronicity on GitHub">Watch</a>
 
-<a href='https://github.com/marksnyder/Chronicity'>Github</a>
+<a class="github-button" href="https://github.com/marksnyder/Chronicity/archive/master.zip" data-icon="octicon-cloud-download" data-size="large" aria-label="Download marksnyder/Chronicity on GitHub">Download</a>
 
-Nuget Packages:
+<a class="github-button" href="https://github.com/marksnyder/Chronicity" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star marksnyder/Chronicity on GitHub">Star</a>
+
+## Nuget Packages:
 
 <a href='https://www.nuget.org/packages/Chronicity.Core/'>Chronicity Core</a>  
 
 <a href='https://www.nuget.org/packages/Chronicity.Provider.InMemory/'>Chronicity.Provider.InMemory</a>
+
+## Example:
+
+<a href='http://ex.chronicity.io'>Bitcoin Timeline Example</a>
 
 # Initializing
 
@@ -95,41 +100,12 @@ service.RegisterEvent(e);
 
 ## Filtering Events
 
-> By Type
+> Event Filter
 
 ```csharp
-service.FilterEvents(new string[] { "Type=MyEventType" });
+service.FilterEvents(new string[] { "Filter1", "Filter2" });
 ```
 
-> By Time (Before)
-
-```csharp
-service.FilterEvents(new string[] { "On.Before=2001/01/01 01:02" });
-```
-
-> By Time (After)
-
-```csharp
-service.FilterEvents(new string[] { "On.After=2001/01/01 01:02" });
-```
-
-> By Time (Between)
-
-```csharp
-service.FilterEvents(new string[] { "On.Between=2001/01/01 01:00,2001/01/01 01:02" });
-```
-
-> By Entity State
-
-```csharp
-service.FilterEvents(new string[] { "Entity.State.MyVal=Hello World" });
-```
-
-> By Entity Type
-
-```csharp
-service.FilterEvents(new string[] { "Entity.Type=MyEntityType" });
-```
 
 Registered events can be searched using expression filters. Filters will return a results that contains:
 
@@ -140,6 +116,15 @@ Event | The matching registered event
 Links | Entities linked after event was registered
 LinkedState | State of linked entities after event was registered
 
+Filtering options include:
+
+Example | Description
+------ | --------
+Type=MyEventType | Event type
+On.Before=2001/01/01 01:02 | Event time
+On.After=2001/01/01 01:02 |  Event time
+On.Between=2001/01/01 01:00,2001/01/01 01:02 |  Event time
+Entity.State.MyVal=Hello World | Entity state
 
 # Entities
 
@@ -155,3 +140,14 @@ service.GetEntityState("MyEntityID","2001/01/01 01:01");
 ```
 
 Returns a dictionary representing state at the time specified.
+
+
+## Retrieving Entity links
+
+```csharp
+
+service.GetEntityLinks("MyEntityID","2001/01/01 01:01");
+
+```
+
+Returns a list representing links to other entities at the time specified.
