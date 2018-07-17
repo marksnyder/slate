@@ -66,6 +66,15 @@ service.RegisterObservation(o1);
 
 ## Filtering Events
 
+Response:
+
+Property  | Description
+--------- | ---------
+Type | Type of event
+On | Date and time of event
+Entities | List of related entities & state
+Id | Unique identifier
+
 > Event Filter
 
 ```csharp
