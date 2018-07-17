@@ -16,85 +16,51 @@ search: true
 
 # Introduction
 
-A powerful library written in .NET Core for searching and linking event/time driven datasets. Provides a rolling state mechanism and intelligent state linking.
+Chronicity can be leveraged directly in .NET Core or via web service.
 
-
-## Source Code:
-
-<a class="github-button" href="https://github.com/marksnyder/Chronicity/subscription" data-icon="octicon-eye" data-size="large" data-show-count="true" aria-label="Watch marksnyder/Chronicity on GitHub">Watch</a>
-
-<a class="github-button" href="https://github.com/marksnyder/Chronicity/archive/master.zip" data-icon="octicon-cloud-download" data-size="large" aria-label="Download marksnyder/Chronicity on GitHub">Download</a>
-
-<a class="github-button" href="https://github.com/marksnyder/Chronicity" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star marksnyder/Chronicity on GitHub">Star</a>
-
-## Nuget Packages:
-
-<a href='https://www.nuget.org/packages/Chronicity.Core/'>Chronicity Core</a>  
-
-<a href='https://www.nuget.org/packages/Chronicity.Provider.InMemory/'>Chronicity.Provider.InMemory</a>
-
-## Example:
-
-<a href='http://ex.chronicity.io'>Bitcoin Timeline Example</a>
 
 # Initializing
 
 In order to use the timeline service you must create an instance of ITimeLineService.
 
 
-> At this time an in memory provider is available. Future development will include persistent storage providers.
-
 ```csharp
-var service = new Chronicity.Provider.InMemory.TimeLineService();
+var service = new TimeLineService();
 ```
-
-
 
 # Events
 
-Events can modify the state and relationships of registered entities.
+Events can be tracked and linked to one or more entities.
 
 ## Register New Event
 
 ```csharp
-var e = new Event()
- {
-     On = "2001/01/01 01:01",
-     Type = "MyEventType",
-     Entity = "MyEntityID"
- };
+var e1 = new NewEvent()
+{
+    On = "2001/01/01 01:01",
+    Type = "MyEventType",
+    Entities = new [] { "MyEntity" }
+};
 
-service.RegisterEvent(e);
-
-```
-
-## Setting Entity State
-
-```csharp
-var e = new Event()
- {
-     On = "2001/01/01 01:01",
-     Type = "MyEventType",
-     Entity = "MyEntityID",
-     Observations = new string[] { "Entity.State.MyVal=Hello World" }
- };
-
-service.RegisterEvent(e);
+service.RegisterEvent(e1);
 
 ```
 
-## Linking Entities
+# Observations
+
+Observations directly impact entity state.
+
+## Register New Observation
 
 ```csharp
-var e = new Event()
- {
-     On = "2001/01/01 01:01",
-     Type = "MyEventType",
-     Entity = "MyEntityID",
-     Observations = new string[] { "Entity.Links.Add=AnotherEntityId" }
- };
+var o1 = new Observation()
+{
+   On = "2001/01/01 01:01",
+   Entity = "MyEntity",
+   Expressions = new[] { "Entity.State.MyVal=Hello World" }
+};
 
-service.RegisterEvent(e);
+service.RegisterObservation(o1);
 
 ```
 
@@ -103,51 +69,53 @@ service.RegisterEvent(e);
 > Event Filter
 
 ```csharp
-service.FilterEvents(new string[] { "Filter1", "Filter2" });
+service.FilterEvents(new string[] { "Entity.State.MyVal=Hello World" });
+
+service.FilterEvents(new string[] { "On.After=2001/01/01 01:01" });
+
+service.FilterEvents(new string[] { "On.Before=2001/01/01 01:02" });
+
+service.FilterEvents(new string[] { "On.Between=2001/01/01 01:00,2001/01/01 01:02" });
+
+service.FilterEvents(new string[] { "Type=MyEventType" });
+
+service.FilterEvents(new string[] { "Type=[MyEventType1,MyEventType2]" });
+
 ```
 
 
-Registered events can be searched using expression filters. Filters will return a results that contains:
+# Entity State
 
-Property  | Description
---------- | ---------
-State | The state of the entity after event was registered
-Event | The matching registered event
-Links | Entities linked after event was registered
-LinkedState | State of linked entities after event was registered
+Over time entity state may change (via observations).
 
-Filtering options include:
+## Retrieving Entity State (Given Time)
 
-Example | Description
------- | --------
-Type=MyEventType | Event type
-On.Before=2001/01/01 01:02 | Event time
-On.After=2001/01/01 01:02 |  Event time
-On.Between=2001/01/01 01:00,2001/01/01 01:02 |  Event time
-Entity.State.MyVal=Hello World | Entity state
+```csharp
+service.GetEntityState("MyEntity","2001 /01/01 01:01");
+```
 
-# Entities
+## Retrieving State Ranges (Value Comparisons)
 
-Entities represent tracked state over time.
+```csharp
+service.FilterState(new[] { "Entity.State.MyVal=Hello World" })
+
+service.FilterState(new[] { "Entity.State.MyNumericVal <= 10" });
+
+service.FilterState(new[] { "Entity.State.MyNumericVal = 9" });
+
+service.FilterState(new[] { "Entity.State.MyNumericVal > 14" });
+
+```
 
 
-## Retrieving Entity state
+# Event Cluster
+
+## Retrieving Event Clusters
 
 ```csharp
 
-service.GetEntityState("MyEntityID","2001/01/01 01:01");
+_service.SearchClusters(
+                new [] { "On.After=2001/01/01 01:00" },
+                new [] { "TimeSpan <= 0.0:5:0" });
 
 ```
-
-Returns a dictionary representing state at the time specified.
-
-
-## Retrieving Entity links
-
-```csharp
-
-service.GetEntityLinks("MyEntityID","2001/01/01 01:01");
-
-```
-
-Returns a list representing links to other entities at the time specified.
