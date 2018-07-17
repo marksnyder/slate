@@ -66,14 +66,6 @@ service.RegisterObservation(o1);
 
 ## Filtering Events
 
-Response:
-
-Property  | Description
---------- | ---------
-Type | Type of event
-On | Date and time of event
-Entities | List of related entities & state
-Id | Unique identifier
 
 > Event Filter
 
@@ -91,6 +83,16 @@ service.FilterEvents(new string[] { "Type=MyEventType" });
 service.FilterEvents(new string[] { "Type=[MyEventType1,MyEventType2]" });
 
 ```
+
+
+Response:
+
+Property  | Description
+--------- | ---------
+Type | Type of event
+On | Date and time of event
+Entities | List of related entities & state
+Id | Unique identifier
 
 
 # Entity State
