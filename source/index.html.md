@@ -85,7 +85,7 @@ service.FilterEvents(new string[] { "Type=[MyEventType1,MyEventType2]" });
 ```
 
 
-Response:
+Response: (Array)
 
 Property  | Description
 --------- | ---------
@@ -118,6 +118,15 @@ service.FilterState(new[] { "Entity.State.MyNumericVal > 14" });
 
 ```
 
+Response: (Array)
+
+Property  | Description
+--------- | ---------
+Entity | Owner of state
+Start | Beginning of state range
+End | End of state range (null if current)
+Key | State key
+Value | State value
 
 # Event Cluster
 
@@ -130,3 +139,13 @@ _service.SearchClusters(
                 new [] { "TimeSpan <= 0.0:5:0" });
 
 ```
+
+
+Response: (Array)
+
+Property  | Description
+--------- | ---------
+Entities (Array) | Related entities
+Start | Beginning of cluster
+End | End of cluster
+Events | (Array) Events contained within cluster
