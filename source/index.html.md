@@ -134,7 +134,7 @@ Value | State value
 
 ```csharp
 
-_service.SearchClusters(
+_service.ClusterEvents(
                 new [] { "On < 2001/01/01 01:00" },
                 new [] { "Within <= 0.0:5:0" });
 
