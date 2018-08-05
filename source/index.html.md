@@ -153,7 +153,7 @@ Events | (Array) Events contained within cluster
 
 # Advanced
 
-# Entity Framework Setup - MVC / SQL server
+## Entity Framework Setup - MVC / SQL server
 
 Chronicity currently uses Entity Framework as a storage provider. This example shows how to use dependency injection to initialize the timeline service. At this time the SQL Server provider is the only tested provider but others should work as well. SQL Scripts to create schema are available in the source under "SQL Schema".
 
