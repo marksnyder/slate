@@ -16,17 +16,8 @@ search: true
 
 # Introduction
 
-Chronicity can be leveraged directly in .NET Core or via web service.
+Chronicity includes a provider which utilizes entity framework.  
 
-
-# Initializing
-
-In order to use the timeline service you must create an instance of ITimeLineService.
-
-
-```csharp
-var service = new TimeLineService();
-```
 
 # Events
 
@@ -158,3 +149,27 @@ Entities (Array) | Related entities
 Start | Beginning of cluster
 End | End of cluster
 Events | (Array) Events contained within cluster
+
+
+# Advanced
+
+# Entity Framework Setup - MVC / SQL server
+
+Chronicity currently uses Entity Framework as a storage provider. This example shows how to use dependency injection to initialize the timeline service. At this time the SQL Server provider is the only tested provider but others should work as well. SQL Scripts to create schema are available in the source under "SQL Schema".
+
+
+```csharp
+
+public void ConfigureServices(IServiceCollection services)
+{
+    var bp = services.BuildServiceProvider();
+
+    services.AddDbContext<ChronicityContext>(options =>
+        options.UseSqlServer("Data Source=IPADDRESS;Initial Catalog=DATABASE;Integrated Security=False;User Id=sa;Password=MYPASS;");
+
+    services.AddTransient<ITimelineService,CreateTimeline>();
+
+    services.AddLogging();
+}
+
+```
